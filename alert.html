@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cảnh báo</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{
+  font-family:'Baloo 2', cursive;
+  background:linear-gradient(135deg,#ffecd2,#fcb69f);
+  text-align:center;
+  padding:40px;
+}
+.container{
+  background:white;
+  max-width:600px;
+  margin:auto;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+h1{color:red;}
+ul{text-align:left;font-size:16px;}
+button{
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  background:red;
+  color:white;
+  cursor:pointer;
+}
+.sticker{width:120px;margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>⚠️ Đối phương đang quấy rối tình dục bạn</h1>
+
+  <ul>
+    <li>Chặn ngay tài khoản quấy rối</li>
+    <li>Không trả lời tin nhắn</li>
+    <li>Lưu lại bằng chứng</li>
+    <li>Báo cho phụ huynh/người lớn</li>
+    <li>Báo cáo nền tảng hoặc cơ quan chức năng</li>
+  </ul>
+
+  <button onclick="sendSMS()">Gửi cảnh báo phụ huynh</button>
+
+  <img class="sticker" src="https://i.imgur.com/5M0XH5b.png">
+</div>
+
+<script>
+function sendSMS(){
+  const phone=localStorage.getItem("parentPhone");
+  if(!phone){
+    alert("Không tìm thấy số điện thoại!");
+    return;
+  }
+  const msg=encodeURIComponent(
+    "Con bạn có thể đang bị quấy rối tình dục online. Vui lòng quan tâm và hỗ trợ ngay."
+  );
+  window.location.href=`sms:${phone}?body=${msg}`;
+}
+</script>
+</body>
+</html>
